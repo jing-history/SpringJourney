@@ -34,12 +34,15 @@ public class InitDataToDataBase {
     private SessionFactory sessionFactory;
 
     // 存放url 和title
-    public ConcurrentHashMap<String,String> concurrentHashMap = new ConcurrentHashMap();
+    public ConcurrentHashMap<String,String> currentHashMap = new ConcurrentHashMap();
 
     @Test
     @Transactional
     public void test() throws IOException {
         final Session session = sessionFactory.getCurrentSession();
         ExecutorService pool = Executors.newFixedThreadPool(10);
+        for (int i = 0; i < 20; i++) {// 总共20也 开启20个线程去爬去链接
+            pool.execute(new PutArticelUrlByPage(currentHashMap, i));
+        }
     }
 }
