@@ -3,6 +3,8 @@ package tk.jingzing.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import tk.jingzing.model.User;
 import tk.jingzing.service.UserService;
@@ -19,6 +21,7 @@ public class HelloWorldRestController {
     UserService userService;//Service which will do all data retrieval/manipulation work
 
     //-------------------Retrieve All Users--------------------------------------------------------
+    @RequestMapping(value = "/user/", method = RequestMethod.GET)
     public ResponseEntity<List<User>> listAllUser(){
         List<User> users = userService.findAllUsers();
         if(users.isEmpty()){

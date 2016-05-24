@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService{
     }
 
     public List<User> findAllUsers() {
-        return users;
+        return populateDummyUsers();
     }
 
     public void deleteAllUsers() {
